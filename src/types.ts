@@ -39,7 +39,7 @@ export interface AdminUser {
   onboardingStep?: number;
   role: string;
   permissions?: string[];
-  certificateCn?: string;
+  certificateCn?: string | null;
   invitedBy?: string;
   invitationToken?: string;
   invitationExpires?: string;
