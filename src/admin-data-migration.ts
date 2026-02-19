@@ -169,7 +169,7 @@ export async function ensureDefaultAdminUser(): Promise<void> {
       lastLoginAt: null,
       isActive: true,
       role: 'super_admin',
-      certificateCn: null,
+      certificateCn: undefined,
       permissions: getDefaultPermissions('super_admin')
     };
 
