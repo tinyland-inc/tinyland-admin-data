@@ -11,7 +11,7 @@
  *
  * @example
  * ```typescript
- * import { configureAdminData } from '@tinyland-inc/tinyland-admin-data';
+ * import { configureAdminData } from '@tummycrypt/tinyland-admin-data';
  *
  * configureAdminData({
  *   dataDir: '/app/content/auth',

@@ -3,7 +3,7 @@
  *
  * These are self-contained copies of the AdminUser and AdminActivityLog
  * interfaces, avoiding any dependency on $lib/types/admin or
- * @tinyland-inc/tinyland-auth at the package level.
+ * @tummycrypt/tinyland-auth at the package level.
  *
  * @module types
  */

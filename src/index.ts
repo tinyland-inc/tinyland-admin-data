@@ -1,5 +1,5 @@
 /**
- * @tinyland-inc/tinyland-admin-data
+ * @tummycrypt/tinyland-admin-data
  *
  * Admin data transformation and migration utilities.
  * Provides snake_case/camelCase conversion for AdminUser and AdminActivityLog,
@@ -11,7 +11,7 @@
  *   configureAdminData,
  *   transformAdminUserToCamelCase,
  *   runAdminDataMigration,
- * } from '@tinyland-inc/tinyland-admin-data';
+ * } from '@tummycrypt/tinyland-admin-data';
  *
  * // Configure once at startup
  * configureAdminData({
@@ -26,7 +26,7 @@
  * await runAdminDataMigration();
  * ```
  *
- * @module @tinyland-inc/tinyland-admin-data
+ * @module @tummycrypt/tinyland-admin-data
  */
 
 // Configuration
