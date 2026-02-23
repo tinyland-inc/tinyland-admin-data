@@ -1,19 +1,19 @@
-/**
- * Inlined type definitions for admin data structures.
- *
- * These are self-contained copies of the AdminUser and AdminActivityLog
- * interfaces, avoiding any dependency on $lib/types/admin or
- * @tummycrypt/tinyland-auth at the package level.
- *
- * @module types
- */
 
-/**
- * AdminUser interface - App-specific with username/password schema
- *
- * All field names use consistent camelCase convention.
- * Legacy snake_case fields are preserved for backward compatibility during migration.
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export interface AdminUser {
   id: string;
   username: string;
@@ -64,20 +64,20 @@ export interface AdminUser {
   };
   backupCodes?: string[];
 
-  // Legacy fields (deprecated, use camelCase versions above)
-  /** @deprecated Use certificateCn instead */
+  
+  
   certificate_cn?: string;
-  /** @deprecated Use invitedBy instead */
+  
   invited_by?: string;
-  /** @deprecated Use invitationToken instead */
+  
   invitation_token?: string;
 }
 
-/**
- * AdminActivityLog interface - Standardized camelCase naming
- *
- * Activity log entries for auditing admin actions.
- */
+
+
+
+
+
 export interface AdminActivityLog {
   id: string;
   adminUserId: string;
@@ -90,17 +90,17 @@ export interface AdminActivityLog {
   details: unknown | null;
   createdAt: string;
 
-  // Legacy fields (deprecated, use camelCase versions above)
-  /** @deprecated Use adminUserId instead */
+  
+  
   admin_user_id?: string;
-  /** @deprecated Use resourceType instead */
+  
   resource_type?: string;
-  /** @deprecated Use resourceId instead */
+  
   resource_id?: string | null;
-  /** @deprecated Use ipAddress instead */
+  
   ip_address?: string | null;
-  /** @deprecated Use userAgent instead */
+  
   user_agent?: string | null;
-  /** @deprecated Use createdAt instead */
+  
   created_at?: string;
 }

@@ -1,22 +1,22 @@
-/**
- * Data transformation utilities for AdminUser and AdminActivityLog
- *
- * Handles conversion between snake_case (legacy) and camelCase (standard) formats.
- * Ensures backward compatibility during migration period.
- *
- * @module admin-data-transform
- */
+
+
+
+
+
+
+
+
 
 import type { AdminUser, AdminActivityLog } from './types.js';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
-/**
- * Transform AdminUser from any format to standardized camelCase
- * Handles both legacy snake_case and new camelCase formats
- */
+
+
+
+
+
 export function transformAdminUserToCamelCase(user: any): AdminUser {
-  // If user is null or undefined, return as-is
+  
   if (!user) return user;
 
   return {
@@ -50,10 +50,10 @@ export function transformAdminUserToCamelCase(user: any): AdminUser {
   };
 }
 
-/**
- * Transform AdminUser to snake_case format (for legacy systems/files)
- * Used when writing to files that haven't been migrated yet
- */
+
+
+
+
 export function transformAdminUserToSnakeCase(user: AdminUser): any {
   return {
     id: user.id,
@@ -86,9 +86,9 @@ export function transformAdminUserToSnakeCase(user: AdminUser): any {
   };
 }
 
-/**
- * Transform AdminActivityLog from any format to standardized camelCase
- */
+
+
+
 export function transformActivityLogToCamelCase(log: any): AdminActivityLog {
   if (!log) return log;
 
@@ -106,9 +106,9 @@ export function transformActivityLogToCamelCase(log: any): AdminActivityLog {
   };
 }
 
-/**
- * Transform AdminActivityLog to snake_case format (for legacy systems)
- */
+
+
+
 export function transformActivityLogToSnakeCase(log: AdminActivityLog): any {
   return {
     id: log.id,
@@ -124,23 +124,23 @@ export function transformActivityLogToSnakeCase(log: AdminActivityLog): any {
   };
 }
 
-/**
- * Batch transform array of AdminUsers to camelCase
- */
+
+
+
 export function transformAdminUserArrayToCamelCase(users: any[]): AdminUser[] {
   return users.map(transformAdminUserToCamelCase);
 }
 
-/**
- * Batch transform array of AdminActivityLogs to camelCase
- */
+
+
+
 export function transformActivityLogArrayToCamelCase(logs: any[]): AdminActivityLog[] {
   return logs.map(transformActivityLogToCamelCase);
 }
 
-/**
- * Detect if an AdminUser object uses snake_case format
- */
+
+
+
 export function isSnakeCaseAdminUser(user: any): boolean {
   const snakeCaseFields = [
     'password_hash',
@@ -158,9 +158,9 @@ export function isSnakeCaseAdminUser(user: any): boolean {
   return snakeCaseFields.some(field => field in user);
 }
 
-/**
- * Detect if an AdminActivityLog object uses snake_case format
- */
+
+
+
 export function isSnakeCaseActivityLog(log: any): boolean {
   const snakeCaseFields = [
     'admin_user_id',
@@ -174,18 +174,18 @@ export function isSnakeCaseActivityLog(log: any): boolean {
   return snakeCaseFields.some(field => field in log);
 }
 
-/**
- * Migration helper: Transform entire admin-users.json file
- */
+
+
+
 export function migrateAdminUsersFile(data: any): AdminUser[] {
-  // Handle both array format and object with users property
+  
   const users = Array.isArray(data) ? data : (data.users || []);
   return transformAdminUserArrayToCamelCase(users);
 }
 
-/**
- * Migration helper: Transform entire admin-activity.json file
- */
+
+
+
 export function migrateActivityLogsFile(data: any): AdminActivityLog[] {
   const logs = Array.isArray(data) ? data : (data.logs || []);
   return transformActivityLogArrayToCamelCase(logs);
