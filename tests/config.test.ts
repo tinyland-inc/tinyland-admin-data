@@ -11,9 +11,9 @@ beforeEach(() => {
   resetAdminDataConfig();
 });
 
-// ===========================================================================
-// configureAdminData
-// ===========================================================================
+
+
+
 describe('configureAdminData', () => {
   it('should merge dataDir into config', () => {
     configureAdminData({ dataDir: '/custom/dir' });
@@ -55,9 +55,9 @@ describe('configureAdminData', () => {
   });
 });
 
-// ===========================================================================
-// getAdminDataConfig
-// ===========================================================================
+
+
+
 describe('getAdminDataConfig', () => {
   it('should return default dataDir when unconfigured', () => {
     const cfg = getAdminDataConfig();
@@ -101,9 +101,9 @@ describe('getAdminDataConfig', () => {
   });
 });
 
-// ===========================================================================
-// resetAdminDataConfig
-// ===========================================================================
+
+
+
 describe('resetAdminDataConfig', () => {
   it('should reset dataDir to default', () => {
     configureAdminData({ dataDir: '/custom' });
@@ -121,7 +121,7 @@ describe('resetAdminDataConfig', () => {
     const custom: AdminDataLogger = { info: () => {}, warn: () => {}, error: () => {} };
     configureAdminData({ getLogger: () => custom });
     resetAdminDataConfig();
-    // Default logger should be console-based, not our custom one
+    
     expect(getAdminDataConfig().getLogger()).not.toBe(custom);
   });
 
@@ -132,9 +132,9 @@ describe('resetAdminDataConfig', () => {
   });
 });
 
-// ===========================================================================
-// getLogger
-// ===========================================================================
+
+
+
 describe('getLogger', () => {
   it('should return default logger when unconfigured', () => {
     const logger = getLogger();

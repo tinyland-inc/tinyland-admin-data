@@ -13,9 +13,9 @@ import {
 } from '../src/admin-data-transform.js';
 import type { AdminUser, AdminActivityLog } from '../src/types.js';
 
-// ---------------------------------------------------------------------------
-// Fixtures
-// ---------------------------------------------------------------------------
+
+
+
 
 const fullCamelCaseUser: AdminUser = {
   id: 'user-1',
@@ -103,9 +103,9 @@ const fullSnakeCaseLog: Record<string, unknown> = {
   created_at: '2024-01-01T00:00:00Z',
 };
 
-// ===========================================================================
-// transformAdminUserToCamelCase
-// ===========================================================================
+
+
+
 describe('transformAdminUserToCamelCase', () => {
   it('should return null for null input', () => {
     expect(transformAdminUserToCamelCase(null)).toBeNull();
@@ -370,9 +370,9 @@ describe('transformAdminUserToCamelCase', () => {
   });
 });
 
-// ===========================================================================
-// transformAdminUserToSnakeCase
-// ===========================================================================
+
+
+
 describe('transformAdminUserToSnakeCase', () => {
   it('should convert full camelCase user to snake_case', () => {
     const result = transformAdminUserToSnakeCase(fullCamelCaseUser);
@@ -436,9 +436,9 @@ describe('transformAdminUserToSnakeCase', () => {
   });
 });
 
-// ===========================================================================
-// transformActivityLogToCamelCase
-// ===========================================================================
+
+
+
 describe('transformActivityLogToCamelCase', () => {
   it('should return null for null input', () => {
     expect(transformActivityLogToCamelCase(null)).toBeNull();
@@ -535,9 +535,9 @@ describe('transformActivityLogToCamelCase', () => {
   });
 });
 
-// ===========================================================================
-// transformActivityLogToSnakeCase
-// ===========================================================================
+
+
+
 describe('transformActivityLogToSnakeCase', () => {
   it('should convert full camelCase log to snake_case', () => {
     const result = transformActivityLogToSnakeCase(fullCamelCaseLog);
@@ -576,9 +576,9 @@ describe('transformActivityLogToSnakeCase', () => {
   });
 });
 
-// ===========================================================================
-// transformAdminUserArrayToCamelCase
-// ===========================================================================
+
+
+
 describe('transformAdminUserArrayToCamelCase', () => {
   it('should return empty array for empty input', () => {
     expect(transformAdminUserArrayToCamelCase([])).toEqual([]);
@@ -615,9 +615,9 @@ describe('transformAdminUserArrayToCamelCase', () => {
   });
 });
 
-// ===========================================================================
-// transformActivityLogArrayToCamelCase
-// ===========================================================================
+
+
+
 describe('transformActivityLogArrayToCamelCase', () => {
   it('should return empty array for empty input', () => {
     expect(transformActivityLogArrayToCamelCase([])).toEqual([]);
@@ -638,9 +638,9 @@ describe('transformActivityLogArrayToCamelCase', () => {
   });
 });
 
-// ===========================================================================
-// isSnakeCaseAdminUser
-// ===========================================================================
+
+
+
 describe('isSnakeCaseAdminUser', () => {
   it('should return true when password_hash is present', () => {
     expect(isSnakeCaseAdminUser({ password_hash: 'h' })).toBe(true);
@@ -699,9 +699,9 @@ describe('isSnakeCaseAdminUser', () => {
   });
 });
 
-// ===========================================================================
-// isSnakeCaseActivityLog
-// ===========================================================================
+
+
+
 describe('isSnakeCaseActivityLog', () => {
   it('should return true when admin_user_id is present', () => {
     expect(isSnakeCaseActivityLog({ admin_user_id: 'u' })).toBe(true);
@@ -740,9 +740,9 @@ describe('isSnakeCaseActivityLog', () => {
   });
 });
 
-// ===========================================================================
-// migrateAdminUsersFile
-// ===========================================================================
+
+
+
 describe('migrateAdminUsersFile', () => {
   it('should handle array format', () => {
     const data = [
@@ -787,9 +787,9 @@ describe('migrateAdminUsersFile', () => {
   });
 });
 
-// ===========================================================================
-// migrateActivityLogsFile
-// ===========================================================================
+
+
+
 describe('migrateActivityLogsFile', () => {
   it('should handle array format', () => {
     const data = [fullSnakeCaseLog];
@@ -828,9 +828,9 @@ describe('migrateActivityLogsFile', () => {
   });
 });
 
-// ===========================================================================
-// Additional edge case tests
-// ===========================================================================
+
+
+
 describe('transformAdminUserToCamelCase - additional edge cases', () => {
   it('should handle false values for boolean fields (not coerce to default)', () => {
     const user = {

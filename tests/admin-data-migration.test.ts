@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { configureAdminData, resetAdminDataConfig } from '../src/config.js';
 
-// ---------------------------------------------------------------------------
-// Mock fs/promises before importing the module under test
-// ---------------------------------------------------------------------------
+
+
+
 vi.mock('fs', () => {
   const fsMock = {
     mkdir: vi.fn(),
@@ -32,9 +32,9 @@ const mockFs = fs as unknown as {
   readFile: ReturnType<typeof vi.fn>;
 };
 
-// ---------------------------------------------------------------------------
-// Setup / Teardown
-// ---------------------------------------------------------------------------
+
+
+
 beforeEach(() => {
   vi.clearAllMocks();
   resetAdminDataConfig();
@@ -46,7 +46,7 @@ beforeEach(() => {
       return ['read'];
     },
   });
-  // Safe defaults
+  
   mockFs.mkdir.mockResolvedValue(undefined);
   mockFs.access.mockResolvedValue(undefined);
   mockFs.writeFile.mockResolvedValue(undefined);
@@ -57,9 +57,9 @@ afterEach(() => {
   resetAdminDataConfig();
 });
 
-// ===========================================================================
-// ensureAdminDataFiles
-// ===========================================================================
+
+
+
 describe('ensureAdminDataFiles', () => {
   it('should create the logs directory recursively', async () => {
     await ensureAdminDataFiles();
@@ -129,9 +129,9 @@ describe('ensureAdminDataFiles', () => {
   });
 });
 
-// ===========================================================================
-// migrateFromLegacyUsers
-// ===========================================================================
+
+
+
 describe('migrateFromLegacyUsers', () => {
   it('should return early if legacy file does not exist', async () => {
     mockFs.readFile.mockImplementation((filePath: string) => {
@@ -322,7 +322,7 @@ describe('migrateFromLegacyUsers', () => {
       return Promise.resolve('[]');
     });
     mockFs.writeFile.mockRejectedValue(new Error('ENOSPC'));
-    // Should not throw
+    
     await expect(migrateFromLegacyUsers()).resolves.toBeUndefined();
   });
 
@@ -408,14 +408,14 @@ describe('migrateFromLegacyUsers', () => {
       }
       return Promise.resolve('[]');
     });
-    // JSON.parse will throw, caught by the outer catch
+    
     await expect(migrateFromLegacyUsers()).resolves.toBeUndefined();
   });
 });
 
-// ===========================================================================
-// ensureDefaultAdminUser
-// ===========================================================================
+
+
+
 describe('ensureDefaultAdminUser', () => {
   it('should create default admin when no users exist', async () => {
     mockFs.readFile.mockResolvedValue('[]');
@@ -573,32 +573,32 @@ describe('ensureDefaultAdminUser', () => {
     mockFs.readFile.mockResolvedValue('[]');
     await ensureDefaultAdminUser();
     const written = mockFs.writeFile.mock.calls[0][1];
-    // Validate it is properly indented JSON
+    
     expect(written).toContain('\n  ');
     expect(JSON.parse(written)).toBeDefined();
   });
 });
 
-// ===========================================================================
-// runAdminDataMigration
-// ===========================================================================
+
+
+
 describe('runAdminDataMigration', () => {
   it('should run all three migration steps', async () => {
-    // Set up so all steps succeed
+    
     mockFs.access.mockRejectedValue(new Error('ENOENT'));
     mockFs.readFile.mockImplementation((filePath: string) => {
       if (filePath === '/test/data/users.json') {
         return Promise.reject(new Error('ENOENT'));
       }
-      // Return empty array for admin-users.json
+      
       return Promise.resolve('[]');
     });
 
     await runAdminDataMigration();
 
-    // ensureAdminDataFiles wrote both files
+    
     expect(mockFs.mkdir).toHaveBeenCalled();
-    // ensureDefaultAdminUser wrote the default admin
+    
     expect(mockFs.writeFile).toHaveBeenCalled();
   });
 
@@ -640,7 +640,7 @@ describe('runAdminDataMigration', () => {
       return Promise.resolve('[]');
     });
 
-    // Should not throw - migrateFromLegacyUsers swallows errors
+    
     await expect(runAdminDataMigration()).resolves.toBeUndefined();
   });
 
@@ -655,7 +655,7 @@ describe('runAdminDataMigration', () => {
       if (filePath === '/test/data/users.json') {
         return Promise.reject(new Error('ENOENT'));
       }
-      // ensureDefaultAdminUser reads admin-users.json - make it fail
+      
       return Promise.reject(new Error('EACCES'));
     });
     await expect(runAdminDataMigration()).rejects.toThrow('EACCES');
